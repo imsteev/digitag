@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>How Do I Wash This?</title>
+</head>
+<body>
+    <div id="app">
+        {{ message }}
+        <washing-symbol description='Wash at 60 C or less'></washing-symbol>
+        <washing-symbol description='Wash between 60 C and 70 C'></washing-symbol>
+        <washing-symbol description='Wash greater than 70 C'></washing-symbol>
+    </div>
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="./app.js"></script>
+</body>
+</html>
