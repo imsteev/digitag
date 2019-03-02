@@ -61,7 +61,6 @@ Vue.component('washing-symbol', {
   props: ['symbol'],
   template: `
     <div class='washing-symbol'>
-      <img v-bind:src=symbol.url />
       <div>{{ symbol.description }}</div>
     </div>
   `
