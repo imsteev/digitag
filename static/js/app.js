@@ -61,6 +61,7 @@ Vue.component('washing-symbol', {
   props: ['symbol'],
   template: `
     <div class='washing-symbol'>
+      <img v-bind:src=symbol.url width="64px" height="64px"/>
       <div>{{ symbol.description }}</div>
     </div>
   `
@@ -70,7 +71,7 @@ let app = new Vue({
   el: '#app',
   data: {
     symbols: [
-      Object.assign({'url': './wash.svg' }, washing.MACHINE)
+      Object.assign({'url': './static/assets/machine-wash.svg' }, washing.MACHINE)
     ]
   }
 });
