@@ -7,9 +7,9 @@ Vue.component('washing-symbol', {
     }
   },
   template: `
-    <div class='washing-symbol'>
-      <img v-bind:src=symbol.url width="64px" height="64px" style="cursor: pointer;"/>
-      <div>{{ symbol.description }}</div>
+    <div class='washing-symbol center-align'>
+      <img class='z-depth-1' v-bind:src=symbol.url width="64px" height="64px" style="cursor: pointer;"/>
+      <p>: )</p>
     </div>
   `
 });
