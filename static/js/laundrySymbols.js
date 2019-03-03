@@ -30,8 +30,8 @@ const drying = {
 
 const dryingTemps = {
   ANY: {'description': 'Any heat', 'url': './static/assets/FILL-IN-FILE.svg'},
-  LOW: {'description': 'Low heat', 'url': './static/assets/FILL-IN-FILE.svg'},
-  MEDIUM: {'description': 'Medium heat', 'url': './static/assets/FILL-IN-FILE.svg'},
+  LOW: {'description': 'Low heat', 'url': './static/assets/dry-low.svg'},
+  MEDIUM: {'description': 'Medium heat', 'url': './static/assets/dry-medium.svg'},
   HIGH: {'description': 'High heat', 'url': './static/assets/FILL-IN-FILE.svg'},
   NO_HEAT: {'description': 'No heat. Air dry', 'url': './static/assets/FILL-IN-FILE.svg'}
 }
@@ -74,6 +74,11 @@ let allSymbols = [
   drying.HANG,
   drying.FLAT,
   drying.DONT_WRING,
+  dryingTemps.ANY,
+  dryingTemps.LOW,
+  dryingTemps.MEDIUM,
+  dryingTemps.HIGH,
+  dryingTemps.NO_HEAT,
   dryingCycles.NORMAL,
   dryingCycles.PERMANENT,
   dryingCycles.DELICATE,
