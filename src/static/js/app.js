@@ -37,8 +37,8 @@ let app = new Vue({
   },
   methods: {
     summarize: function () {
-      let allSelected = this.$children.filter((v) => v.selected)
-      let instructions = allSelected.map((v) => v.symbol.description);
+      let allSelected = this.$children.filter(v => v.selected)
+      let instructions = allSelected.map(v => v.symbol.description);
       console.log(instructions)
     }
   }
