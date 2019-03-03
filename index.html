@@ -10,12 +10,13 @@
 <body>
     <div id="app" class="container">
         <h1>How Do I Wash This?</h1>
-        <div class="row" v-for="i in Math.ceil(symbols.length / 6)">
+        <div class="row" v-for="i in Math.ceil(symbols.length / 6)" v-on:click="toggle()">
             <washing-symbol
                 class="col s4 m2 l2"
                 v-for="symbol in symbols.slice((i - 1) * 6, i * 6)"
                 v-bind:key="symbol.id"
                 v-bind:symbol="symbol"
+                
             ></washing-symbol>
         </div>
     </div>

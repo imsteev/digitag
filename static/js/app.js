@@ -18,5 +18,11 @@ let app = new Vue({
   el: '#app',
   data: {
     symbols: allSymbols.map((symbol, i) => Object.assign(symbol, {'id': i}))
+  },
+  methods: {
+    toggle: function() {
+      console.log('SELF', self)
+      console.log('THIS', this)
+    }
   }
 });
