@@ -1,11 +1,8 @@
-const GRIMACING = '&#128556'
-const SLIGHTLY_SMILING = '&#128578'
-
 Vue.component('washing-symbol', {
   props: ['symbol'],
   data() {
     return {
-      selected: GRIMACING,
+      selected: false,
       imgStyle: {
         cursor: 'pointer',
         width: '64px',
@@ -16,7 +13,7 @@ Vue.component('washing-symbol', {
   methods: {
     toggle: function() {
       // NOTE: `this` refers to this Vue component!
-      this.selected = (this.selected === GRIMACING) ? SLIGHTLY_SMILING : GRIMACING;
+      this.selected = !this.selected
     }
   },
   // component templates should only have one root element, i.e, wrap your stuff
@@ -27,7 +24,8 @@ Vue.component('washing-symbol', {
            v-bind:src=symbol.url
            v-bind:style="imgStyle"
            v-on:click="toggle()"/>
-      <p v-html="selected"></p>
+      <p v-if="selected">✅</p>
+      <p v-else>❌</p>
     </div>
   `
 });
@@ -39,7 +37,7 @@ let app = new Vue({
   },
   methods: {
     summarize: function () {
-      let allSelected = this.$children.filter((v) => v.selected == SLIGHTLY_SMILING)
+      let allSelected = this.$children.filter((v) => v.selected)
       let instructions = allSelected.map((v) => v.symbol.description);
       console.log(instructions)
     }
