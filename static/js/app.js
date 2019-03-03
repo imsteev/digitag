@@ -1,64 +1,8 @@
-// washing
-const washing = {
-  MACHINE: {'description': 'Machine wash'},
-  HAND: {'description': 'Hand wash'},
-  DONT: {'description': 'Do not wash'},
-  DRY_CLEAN: {'description': 'Dry clean only'},
-  DONT_DRY_CLEAN: {'description': 'Do not dry clean'}
-}
-
-const washingTemps = {
-  COLD: {'description': 'Wash cold', 'min': '65F', 'max': '85F'},
-  WARM: {'description': 'Wash warm', 'min': '85F', 'max': '105F'},
-  HOT: {'description': 'Wash hot', 'min': '105F', 'max': '120F'},
-}
-
-const washingCycles = {
-  NORMAL: {'description': 'Normal cycle'},
-  PERMANENT: {'description': 'Permanent press cycle'},
-  DELICATE: {'description': 'Delicate/gentle cycle'}
-}
-
-// drying
-const drying = {
-  TUMBLE: {'description': 'Tumble drying allowed'},
-  DONT_TUMBLE: {'description': 'Do not tumble dry'},
-  HANG: {'description': 'Hang to dry'},
-  FLAT: {'description': 'Dry flat'},
-  DONT_WRING: {'description': 'Do not wring'}
-}
-
-const dryingTemps = {
-  ANY: {'description': 'Any heat'},
-  LOW: {'description': 'Low heat'},
-  MEDIUM: {'description': 'Medium heat'},
-  HIGH: {'description': 'High heat'},
-  NO_HEAT: {'description': 'No heat. Air dry'}
-}
-
-const dryingCycles = {
-  NORMAL: {'description': 'Normal cycle'},
-  PERMANENT: {'description': 'Permanent press cycle'},
-  DELICATE: {'description': 'Delicate/gentle cycle'}
-}
-
-// other
-const bleaching = {
-  ALLOWED: {'description': 'Bleaching allowed'},
-  DONT: {'description': 'Do not bleach'},
-  NON_CHLORINE: {'description': 'Use non-chlorine bleach'},
-}
-
-const ironing = {
-  LOW: {'description': 'Iron low'},
-  MEDIUM: {'description': 'Iron medium'},
-  HIGH: {'description': 'Iron high'},
-  DONT: {'description': 'Do not iron'},
-  NO_STEAM: {'description': 'No steam added to iron'},
-}
-
 Vue.component('washing-symbol', {
   props: ['symbol'],
+  data() {
+    return {selected: false}
+  },
   template: `
     <div class='washing-symbol'>
       <img v-bind:src=symbol.url width="64px" height="64px"/>
@@ -70,8 +14,6 @@ Vue.component('washing-symbol', {
 let app = new Vue({
   el: '#app',
   data: {
-    symbols: [
-      Object.assign({'url': './static/assets/machine-wash.svg' }, washing.MACHINE)
-    ]
+    symbols: allSymbols.map((symbol, i) => Object.assign(symbol, {'id': i}))
   }
 });

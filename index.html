@@ -5,17 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>How Do I Wash This?</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 </head>
 <body>
-    <h1>How Do I Wash This?</h1>
-    <div id="app">
-        <washing-symbol
-            v-for="symbol in symbols"
-            v-bind:symbol="symbol"
-        ></washing-symbol>
+    <div id="app" class="container">
+        <h1>How Do I Wash This?</h1>
+        <div class="row" v-for="i in Math.ceil(symbols.length / 6)">
+            <washing-symbol
+                class="col s2 m2 l2"
+                v-for="symbol in symbols.slice((i - 1) * 6, i * 6)"
+                v-bind:key="symbol.id"
+                v-bind:symbol="symbol"
+            ></washing-symbol>
+        </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <!-- development version, includes helpful console warnings -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="./static/js/laundrySymbols.js"></script>
     <script src="./static/js/app.js"></script>
     <script src="./static/js/sw.js"></script>
 </body>
