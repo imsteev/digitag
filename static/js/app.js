@@ -6,7 +6,11 @@ Vue.component('washing-symbol', {
   data() {
     return {
       selected: GRIMACING,
-      style: {'cursor': 'pointer;'}
+      imgStyle: {
+        cursor: 'pointer',
+        width: '64px',
+        height: '64px',
+      }
     }
   },
   methods: {
@@ -21,10 +25,8 @@ Vue.component('washing-symbol', {
     <div class='washing-symbol center-align'>
       <img class='z-depth-1' 
            v-bind:src=symbol.url
-           v-on:click="toggle()"
-           width="64px"
-           height="64px"
-           style="cursor: pointer;"/>
+           v-bind:style="imgStyle"
+           v-on:click="toggle()"/>
       <p v-html="selected"></p>
     </div>
   `
