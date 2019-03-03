@@ -9,10 +9,10 @@
 </head>
 <body>
     <div id="app" class="container">
-        <h1>How Do I Wash This?</h1>
+        <h1 class="center-align">How Do I Wash This?</h1>
         <div class="row" v-for="i in Math.ceil(symbols.length / 6)">
             <washing-symbol
-                class="col s4 m2 l2"
+                class="col s4 m2 l2 center-align"
                 v-for="symbol in symbols.slice((i - 1) * 6, i * 6)"
                 v-bind:key="symbol.id"
                 v-bind:symbol="symbol"
@@ -26,15 +26,17 @@
     <script src="./static/js/laundry-symbols.js"></script>
     <script src="./static/js/app.js"></script>
     <script>
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('./static/js/service-worker.js')
-          .then(registration => {
-            //#region console.log('Service Worker is registered', registration);
-          })
-          .catch(err => {
-            console.error('Registration failed:', err);
-          });
-        });
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+            navigator.serviceWorker.register('./static/js/service-worker.js')
+            .then(registration => {
+                //#region console.log('Service Worker is registered', registration);
+            })
+            .catch(err => {
+                console.error('Registration failed:', err);
+            });
+            });
+        }
     </script>
 </body>
 </html>
