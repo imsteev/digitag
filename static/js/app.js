@@ -1,11 +1,14 @@
 Vue.component('washing-symbol', {
   props: ['symbol'],
   data() {
-    return {selected: false}
+    return {
+      selected: false,
+      style: {'cursor': 'pointer;'}
+    }
   },
   template: `
     <div class='washing-symbol'>
-      <img v-bind:src=symbol.url width="64px" height="64px"/>
+      <img v-bind:src=symbol.url width="64px" height="64px" style="cursor: pointer;"/>
       <div>{{ symbol.description }}</div>
     </div>
   `
