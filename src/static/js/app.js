@@ -33,6 +33,7 @@ Vue.component('washing-symbol', {
 let app = new Vue({
   el: '#app',
   data: {
+    // https://vuejs.org/v2/guide/list.html#key
     symbols: allSymbols.map((symbol, i) => Object.assign(symbol, {'id': i}))
   },
   methods: {
