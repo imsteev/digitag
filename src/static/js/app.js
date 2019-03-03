@@ -10,6 +10,12 @@ Vue.component('washing-symbol', {
       }
     }
   },
+  created: function () {
+    EventBus.$on('reset-selected', function () {
+      this.selected = false;
+      console.log(this.selected, 'got the event!')
+    }.bind(this)) // https://stackoverflow.com/a/39707563/8109239
+  },
   methods: {
     toggle: function() {
       // NOTE: `this` refers to this Vue component!
@@ -41,6 +47,9 @@ let app = new Vue({
       let allSelected = this.$children.filter(v => v.selected)
       let instructions = allSelected.map(v => v.symbol.description);
       console.log(instructions)
+    },
+    reset: function () {
+      EventBus.$emit('reset-selected')
     }
   }
 });

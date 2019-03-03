@@ -19,10 +19,12 @@
             ></washing-symbol>
         </div>
         <button v-on:click="summarize()">Summarize</button>
+        <button v-on:click="reset()">reset</button>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <!-- development version, includes helpful console warnings -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="../js/event-bus.js"></script>
     <script src="../js/laundry-symbols.js"></script>
     <script src="../js/app.js"></script>
     <script>
