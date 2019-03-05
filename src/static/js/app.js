@@ -1,3 +1,8 @@
+const LOG_EVENT = (eventName) => console.log('EVENT: ' + eventName)
+
+// event names
+const RESET_SYMBOLS = 'reset-symbols'
+
 Vue.component('washing-symbol', {
   props: ['symbol'],
   data() {
@@ -11,9 +16,9 @@ Vue.component('washing-symbol', {
     }
   },
   created: function () {
-    EventBus.$on('reset-selected', function () {
-      this.selected = false;
-      console.log(this.selected, 'got the event!')
+    EventBus.$on(RESET_SYMBOLS, function() {
+        LOG_EVENT(RESET_SYMBOLS)
+        this.selected = false;
     }.bind(this)) // https://stackoverflow.com/a/39707563/8109239
   },
   methods: {
@@ -46,10 +51,10 @@ let app = new Vue({
     summarize: function () {
       let allSelected = this.$children.filter(v => v.selected)
       let instructions = allSelected.map(v => v.symbol.description);
-      console.log(instructions)
+      console.log(allSelected, instructions)
     },
     reset: function () {
-      EventBus.$emit('reset-selected')
+      EventBus.$emit(RESET_SYMBOLS)
     }
   }
 });
