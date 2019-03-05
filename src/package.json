@@ -1,0 +1,13 @@
+{
+  "name": "wash",
+  "version": "1.0.0",
+  "main": "server.js",
+  "repository": "https://github.com/imsteev/wash.git",
+  "author": "Stephen Chung <spchung@andrew.cmu.edu>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.4",
+    "fs": "^0.0.1-security",
+    "https": "^1.0.0"
+  }
+}

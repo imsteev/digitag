@@ -24,18 +24,19 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <!-- development version, includes helpful console warnings -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="../js/event-bus.js"></script>
-    <script src="../js/laundry-symbols.js"></script>
-    <script src="../js/app.js"></script>
+    <script src="./static/js/event-bus.js"></script>
+    <script src="./static/js/laundry-symbols.js"></script>
+    <script src="./static/js/app.js"></script>
+    <script src="./serviceworker/service-worker.js"></script>
     <script>
         if ('serviceWorker' in navigator) {
           window.addEventListener('load', () => {
-            navigator.serviceWorker.register('../../service-worker.js')
+            navigator.serviceWorker.register('./serviceworker/service-worker.js')
             .then(registration => {
                 console.log('Service Worker is registered', registration);
             })
             .catch(err => {
-                console.warn('Registration failed:', err);
+                console.warn('Registration failed:', err, err.message);
             });
           });
         }

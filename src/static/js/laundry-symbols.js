@@ -1,4 +1,4 @@
-const ASSETS_FOLDER = '../assets/'
+const ASSETS_FOLDER = './static/assets/'
 
 // washing
 const washing = {

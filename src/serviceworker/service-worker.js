@@ -1,5 +1,5 @@
 const CACHE_NAME = 'cache-v1'
-
+console.log(CACHE_NAME)
 let staticUrls = [
   '/static/',
   '/static/html',
