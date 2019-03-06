@@ -27,13 +27,12 @@
     <script src="./static/js/event-bus.js"></script>
     <script src="./static/js/laundry-symbols.js"></script>
     <script src="./static/js/app.js"></script>
-    <script src="./serviceworker/service-worker.js"></script>
     <script>
         if ('serviceWorker' in navigator) {
           window.addEventListener('load', () => {
-            navigator.serviceWorker.register('./serviceworker/service-worker.js')
-            .then(registration => {
-                console.log('Service Worker is registered', registration);
+            navigator.serviceWorker.register('./service-worker.js')
+            .then(reg => {
+                console.log('Service Worker is registered with scope: ', reg.scope);
             })
             .catch(err => {
                 console.warn('Registration failed:', err, err.message);

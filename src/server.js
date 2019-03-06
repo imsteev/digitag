@@ -7,10 +7,18 @@ const path = require('path')
 const PORT = process.env.PORT || 3000
 
 app.use('/static', express.static('static'))
-app.use('/serviceworker', express.static('serviceworker'))
 
-app.get('/', (req, res) => {
+app.get('/service-worker.js', (req, res) => {
+  res.sendFile(path.join(__dirname + '/service-worker.js'));
+})
+
+app.get(/^(\/|\/index\.html)$/, (req, res) => {
   res.sendFile(path.join(__dirname + '/index.html'));
+})
+
+app.get('*', (req, res) => {
+  console.log('*', req.path)
+  return '404 - page not found'
 })
 
 const serverOptions = {

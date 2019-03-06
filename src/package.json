@@ -1,11 +1,15 @@
 {
   "name": "wash",
   "version": "1.0.0",
-  "main": "server.js",
+  "main": "node server.js",
+  "scripts": {
+    "start": "nodemon --watch static server.js"
+  },
   "repository": "https://github.com/imsteev/wash.git",
   "author": "Stephen Chung <spchung95@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "nodemon": "^1.18.10"
   }
 }
