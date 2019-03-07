@@ -30,7 +30,7 @@ Vue.component('washing-symbol', {
   // component templates should only have one root element, i.e, wrap your stuff
   // in a container if necessary
   template: `
-    <div class='washing-symbol'>
+    <div class='washing-symbol' v-bind:alt=symbol.description>
       <img class='z-depth-1' 
            v-bind:src=symbol.url
            v-bind:style="imgStyle"
