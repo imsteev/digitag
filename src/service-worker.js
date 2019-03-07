@@ -12,12 +12,8 @@ let resources = [
 self.addEventListener('install', function(event) {
   event.waitUntil(
     caches.open(CACHE_NAME)
-    .then(cache => {
-      return cache.addAll(resources)
-    })
-    .catch(err => {
-      console.error(err)
-    })
+      .then(cache => cache.addAll(resources))
+      .catch(console.error)
   )
 });
 
