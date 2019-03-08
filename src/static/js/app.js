@@ -26,6 +26,7 @@ let WashingSymbol = Vue.component('washing-symbol', {
     toggle: function() {
       // NOTE: `this` refers to this Vue component!
       this.selected = !this.selected
+      console.log(this.slot, this.$slot)
     }
   },
   // component templates should only have one root element, i.e, wrap your stuff
@@ -36,8 +37,7 @@ let WashingSymbol = Vue.component('washing-symbol', {
            v-bind:src=symbol.url
            v-bind:style="imgStyle"
            v-on:click="toggle()"/>
-      <p v-if="selected">✅</p>
-      <p v-else>❌</p>
+      <slot v-bind:selected="selected"></slot>
     </div>
   `
 });

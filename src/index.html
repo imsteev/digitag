@@ -16,7 +16,12 @@
                 v-for="symbol in symbols.slice((i - 1) * 6, i * 6)"
                 v-bind:key="symbol.id"
                 v-bind:symbol="symbol"
-            ></washing-symbol>
+                >
+                <template slot-scope="{selected}">
+                    <p v-if="selected">🍃</p>
+                    <p v-else>🍊</p>
+                </template>
+            </washing-symbol>
         </div>
         <div class="row laundry-tag">
             <laundry-tag></laundry-tag>
