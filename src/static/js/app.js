@@ -2,8 +2,9 @@ const LOG_EVENT = (eventName) => console.log('EVENT: ' + eventName)
 
 // event names
 const RESET_SYMBOLS = 'reset-symbols'
+const NEW_SYMBOL = 'new-symbol'
 
-Vue.component('washing-symbol', {
+let WashingSymbol = Vue.component('washing-symbol', {
   props: ['symbol'],
   data() {
     return {
@@ -41,6 +42,29 @@ Vue.component('washing-symbol', {
   `
 });
 
+let LaundryTag = Vue.component('laundry-tag', {
+  components: {
+    'washing-symbol': WashingSymbol
+  },
+  data() {
+    return {
+      symbols: []
+    }
+  },
+  created: function () {
+    EventBus.$on(NEW_SYMBOL, function(symbols) {
+      this.symbols = symbols
+    }.bind(this))
+  },
+  template: `
+    <div class='laundry-tag'>
+      <washing-symbol
+        v-for="symbol in symbols"
+        v-bind:symbol="symbol"></washing-symbol>
+    </div>
+  `
+})
+
 let app = new Vue({
   el: '#app',
   data: {
@@ -49,9 +73,15 @@ let app = new Vue({
   },
   methods: {
     summarize: function () {
-      let allSelected = this.$children.filter(v => v.selected)
-      let instructions = allSelected.map(v => v.symbol.description);
-      console.log(allSelected, instructions)
+      let selectedSymbols = this.$children.filter(v => v.selected)
+        .map(v => ({description: v.symbol.description, url: v.symbol.url}))
+
+      if (selectedSymbols.length > 0) {
+        EventBus.$emit(NEW_SYMBOL, selectedSymbols);
+      }
+
+      // clear out current selection
+      this.reset()
     },
     reset: function () {
       EventBus.$emit(RESET_SYMBOLS)

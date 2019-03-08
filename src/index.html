@@ -18,6 +18,9 @@
                 v-bind:symbol="symbol"
             ></washing-symbol>
         </div>
+        <div class="row laundry-tag">
+            <laundry-tag></laundry-tag>
+        </div>
         <button v-on:click="summarize()">Summarize</button>
         <button v-on:click="reset()">reset</button>
     </div>
