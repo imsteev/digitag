@@ -1,4 +1,4 @@
-# wash
+# digitag
 
 ## Technologies
 - Node
