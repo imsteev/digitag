@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,33 +8,31 @@
     <title>How Do I Wash This?</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 </head>
+
 <body>
     <div id="app" class="container">
-        <h1 class="center-align">How Do I Wash This?</h1>
-        <div class="row laundry-tag">
-                <laundry-tag></laundry-tag>
-            </div>
-            <div class="row center-align">
-                <div class="col">
-                        your QR code
-                        <div id="qrcode"></div>
+        <div class="row">
+            <h1 class="center-align">How Do I Wash This?</h1>
+        </div>
+        <div class="row laundry-tag" style="height: 128px;">
+            <div style="margin-left: 30%;">
+                <laundry-tag class="col"></laundry-tag>
+                <div class="col" v-on:click="generate()" style="margin-top: 10%">
+                    <div class="btn">Generate QR Code</div>
                 </div>
             </div>
+        </div>
+        <div class="row">
+        </div>
         <div class="row" v-for="i in Math.ceil(symbols.length / 6)">
-            <washing-symbol
-                class="col s4 m2 l2 center-align"
-                v-for="symbol in symbols.slice((i - 1) * 6, i * 6)"
-                v-bind:key="symbol.id"
-                v-bind:symbol="symbol"
-                >
+            <washing-symbol class="col s4 m2 l2 center-align" v-for="symbol in symbols.slice((i - 1) * 6, i * 6)"
+                v-bind:key="symbol.id" v-bind:symbol="symbol">
                 <template slot-scope="{selected}">
-                    <p v-if="selected">🍃</p>
-                    <p v-else>🍊</p>
+                    <p v-if="selected">✅</p>
+                    <p v-else>☑️</p>
                 </template>
             </washing-symbol>
         </div>
-        <button v-on:click="summarize()">Summarize</button>
-        <button v-on:click="reset()">reset</button>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <!-- development version, includes helpful console warnings -->
@@ -44,16 +43,17 @@
     <script src="./static/js/app.js"></script>
     <script>
         if ('serviceWorker' in navigator) {
-          window.addEventListener('load', () => {
-            navigator.serviceWorker.register('./service-worker.js')
-            .then(reg => {
-                console.log('Service Worker is registered with scope: ', reg.scope);
-            })
-            .catch(err => {
-                console.warn('Registration failed:', err, err.message);
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./service-worker.js')
+                    .then(reg => {
+                        console.log('Service Worker is registered with scope: ', reg.scope);
+                    })
+                    .catch(err => {
+                        console.warn('Registration failed:', err, err.message);
+                    });
             });
-          });
         }
     </script>
 </body>
+
 </html>

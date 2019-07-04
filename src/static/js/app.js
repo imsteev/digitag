@@ -28,7 +28,6 @@ let WashingSymbol = Vue.component('washing-symbol', {
     toggle: function() {
       // NOTE: `this` refers to this Vue component!
       this.selected = !this.selected
-      console.log(this.slot, this.$slot)
     }
   },
   // component templates should only have one root element, i.e, wrap your stuff
@@ -57,9 +56,9 @@ let LaundryTag = Vue.component('laundry-tag', {
     EventBus.$on(NEW_SYMBOL, function(symbols) {
       this.symbols = symbols
     }.bind(this))
-    EventBus.$on(RESET_SYMBOLS, function(symbols) {
-      this.symbols = []
-    }.bind(this))
+    // EventBus.$on(RESET_SYMBOLS, function(symbols) {
+    //   this.symbols = []
+    // }.bind(this))
   },
   template: `
     <div class='laundry-tag'>
@@ -75,7 +74,7 @@ let app = new Vue({
     symbols: allSymbols.map((symbol, i) => Object.assign(symbol, {'id': i}))
   },
   methods: {
-    summarize: function () {
+    generate: function () {
       let selectedSymbols = this.$children.filter(v => v.selected)
         .map(v => ({description: v.symbol.description, url: v.symbol.url}))
 
@@ -89,23 +88,22 @@ let app = new Vue({
       });
 
       if (QRCODE) {
+        // replace existing code
         QRCODE.makeCode(qrcodeText);
-        return;
+      } else {
+        QRCODE = new QRCode(document.getElementById("qrcode"), {
+          text: qrcodeText,
+          width: 128,
+          height: 128,
+          colorDark : "#000000",
+          colorLight : "#ffffff",
+          correctLevel : QRCode.CorrectLevel.H
+        });
       }
-      QRCODE = new QRCode(document.getElementById("qrcode"), {
-        text: qrcodeText,
-        width: 128,
-        height: 128,
-        colorDark : "#000000",
-        colorLight : "#ffffff",
-        correctLevel : QRCode.CorrectLevel.H
-      });
+
+      this.reset();
     },
     reset: function () {
-      if (QRCODE) {
-        document.getElementById("qrcode").innerHTML = ""
-        QRCODE = null;
-      }
       EventBus.$emit(RESET_SYMBOLS)
     }
   }
