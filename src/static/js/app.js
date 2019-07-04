@@ -82,8 +82,14 @@ let app = new Vue({
       if (selectedSymbols.length > 0) {
         EventBus.$emit(NEW_SYMBOL, selectedSymbols);
       }
+
+      qrcodeText = ""
+      selectedSymbols.forEach(element => {
+        qrcodeText += element.description
+      });
+
       QRCODE = new QRCode(document.getElementById("qrcode"), {
-        text: "http://jindo.dev.naver.com/collie",
+        text: qrcodeText,
         width: 128,
         height: 128,
         colorDark : "#000000",
