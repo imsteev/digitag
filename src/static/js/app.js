@@ -57,12 +57,12 @@ let LaundryTag = Vue.component('laundry-tag', {
     EventBus.$on(NEW_SYMBOL, function(symbols) {
       this.symbols = symbols
     }.bind(this))
+    EventBus.$on(RESET_SYMBOLS, function(symbols) {
+      this.symbols = []
+    }.bind(this))
   },
   template: `
     <div class='laundry-tag'>
-      <washing-symbol
-        v-for="symbol in symbols"
-        v-bind:symbol="symbol"></washing-symbol>
       <div id="qrcode"></div>
     </div>
   `
@@ -88,6 +88,10 @@ let app = new Vue({
         qrcodeText += element.description
       });
 
+      if (QRCODE) {
+        QRCODE.makeCode(qrcodeText);
+        return;
+      }
       QRCODE = new QRCode(document.getElementById("qrcode"), {
         text: qrcodeText,
         width: 128,
@@ -100,6 +104,7 @@ let app = new Vue({
     reset: function () {
       if (QRCODE) {
         document.getElementById("qrcode").innerHTML = ""
+        QRCODE = null;
       }
       EventBus.$emit(RESET_SYMBOLS)
     }
