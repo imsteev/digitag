@@ -1,4 +1,4 @@
-# digitag
+# DigiTag
 
 ## Technologies
 - Node
