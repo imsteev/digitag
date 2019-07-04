@@ -26,12 +26,19 @@
         <div class="row laundry-tag">
             <laundry-tag></laundry-tag>
         </div>
+        <div class="row center-align">
+            <div class="col">
+                    your QR code
+                    <div id="qrcode"></div>
+            </div>
+        </div>
         <button v-on:click="summarize()">Summarize</button>
         <button v-on:click="reset()">reset</button>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <!-- development version, includes helpful console warnings -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="./static/js/qrcode.min.js"></script>
     <script src="./static/js/event-bus.js"></script>
     <script src="./static/js/laundry-symbols.js"></script>
     <script src="./static/js/app.js"></script>

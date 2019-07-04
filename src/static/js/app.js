@@ -4,6 +4,8 @@ const LOG_EVENT = (eventName) => console.log('EVENT: ' + eventName)
 const RESET_SYMBOLS = 'reset-symbols'
 const NEW_SYMBOL = 'new-symbol'
 
+let QRCODE = null;;
+
 let WashingSymbol = Vue.component('washing-symbol', {
   props: ['symbol'],
   data() {
@@ -33,7 +35,7 @@ let WashingSymbol = Vue.component('washing-symbol', {
   // in a container if necessary
   template: `
     <div class='washing-symbol' v-bind:alt=symbol.description>
-      <img class='z-depth-1' 
+      <img class='z-depth-1'
            v-bind:src=symbol.url
            v-bind:style="imgStyle"
            v-on:click="toggle()"/>
@@ -61,6 +63,7 @@ let LaundryTag = Vue.component('laundry-tag', {
       <washing-symbol
         v-for="symbol in symbols"
         v-bind:symbol="symbol"></washing-symbol>
+      <div id="qrcode"></div>
     </div>
   `
 })
@@ -79,11 +82,19 @@ let app = new Vue({
       if (selectedSymbols.length > 0) {
         EventBus.$emit(NEW_SYMBOL, selectedSymbols);
       }
-
-      // clear out current selection
-      this.reset()
+      QRCODE = new QRCode(document.getElementById("qrcode"), {
+        text: "http://jindo.dev.naver.com/collie",
+        width: 128,
+        height: 128,
+        colorDark : "#000000",
+        colorLight : "#ffffff",
+        correctLevel : QRCode.CorrectLevel.H
+      });
     },
     reset: function () {
+      if (QRCODE) {
+        document.getElementById("qrcode").innerHTML = ""
+      }
       EventBus.$emit(RESET_SYMBOLS)
     }
   }
